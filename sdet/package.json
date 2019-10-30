@@ -1,0 +1,45 @@
+{
+  "name": "testcafe-cucumber",
+  "version": "0.1.0",
+  "description": "An integration of TestCafe and CucumberJS",
+  "author": "Ryan Quellhorst <rquellh@gmail.com>",
+  "contributors": [
+    "harry anto"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src/**",
+    "generateHtmlReport": "rm -rf reports/combined && node reporters/html/prepareJson.js && node reporters/html/generateHtml.js",
+    "debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @debug --format json:./reports/report.json",
+    "test": "npm run test-chrome; npm run test-firefox; npm run generateHtmlReport",
+    "test-headless": "npm run test-chrome-headless; npm run generateHtmlReport",
+    "test-headless-all": "npm run test-chrome-headless; npm run test-firefox-headless; npm run generateHtmlReport",
+    "test-chrome": "./node_modules/.bin/cucumber-js --require 'src/**/*.js' --world-parameters \"{\\\"browser\\\": \\\"chrome\\\"}\" --format json:reports/Chrome.json",
+    "test-ie": "./node_modules/.bin/cucumber-js --require 'src/**/*.js' --world-parameters \"{\\\"browser\\\": \\\"ie\\\"}\"",
+    "test-edge": "./node_modules/.bin/cucumber-js --require 'src/**/*.js' --world-parameters \"{\\\"browser\\\": \\\"edge\\\"}\"",
+    "test-firefox": "./node_modules/.bin/cucumber-js --require 'src/**/*.js'  --world-parameters \"{\\\"browser\\\": \\\"firefox\\\"}\" --format json:reports/Firefox.json",
+    "test-opera": "./node_modules/.bin/cucumber-js --require 'src/**/*.js'  --world-parameters \"{\\\"browser\\\": \\\"opera\\\"}\"",
+    "test-safari": "./node_modules/.bin/cucumber-js --require 'src/**/*.js' --world-parameters \"{\\\"browser\\\": \\\"safari\\\"}\"",
+    "test-chrome-headless": "./node_modules/.bin/cucumber-js --require 'src/**/*.js' --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\" --format json:reports/Chrome.json",
+    "test-firefox-headless": "./node_modules/.bin/cucumber-js --require 'src/**/*.js' --world-parameters \"{\\\"browser\\\": \\\"firefox:headless\\\"}\" --format json:reports/Firefox.json"
+  },
+  "dependencies": {
+    "base64-img": "^1.0.4",
+    "cucumber": "^5.1.0",
+    "eslint": "^4.19.1",
+    "npm": "^6.0.0",
+    "testcafe": "^1.1.0",
+    "dotenv": "^6.0.0",
+    "cucumber-html-reporter": "4.0.2",
+    "multiple-cucumber-html-reporter": "1.10.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
+  }
+}
